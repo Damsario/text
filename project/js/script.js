@@ -77,9 +77,15 @@ createFilm(movieDB.movies);
 const addFilms = (event) => {
     event.preventDefault();
     
-    const newFilm = input.value;
-    movieDB.movies.push(newFilm);
-    createFilm(movieDB.movies);
+    let newFilm = input.value;
+    if (newFilm) {
+        if (newFilm.length > 21) {
+            newFilm = newFilm.substring(0, 21).concat("...")
+        }
+        movieDB.movies.push(newFilm);
+        sort(movieDB.movies);
+        createFilm(movieDB.movies);
+    }
     event.target.reset();
 }
 
