@@ -32,7 +32,7 @@ const advText = document.querySelector(".promo__adv-title")
 const genre = document.querySelector(".promo__genre")
 const bg = document.querySelector(".promo__bg")
 const list = document.querySelector(".promo__interactive-list")
-const form = document.querySelector(".add")
+const form = document.querySelector("form.add")
 const formButton = form.querySelector("button")
 const input = document.querySelector(".adding__input")
 
@@ -78,9 +78,9 @@ const addFilms = (event) => {
     event.preventDefault();
     
     const newFilm = input.value;
-    movieDB.movies.push(newFilm)
+    movieDB.movies.push(newFilm);
     createFilm(movieDB.movies);
-    
+    event.target.reset();
 }
 
-formButton.addEventListener("click", addFilms)
+form.addEventListener("submit", addFilms);
