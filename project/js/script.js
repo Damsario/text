@@ -22,41 +22,49 @@ const movieDB = {
         "Одержимость",
         "Скотт Пилигрим против...",
         "Вова умный мужчина",
-        "Айсын хороший человек"
+        "Айсын хороший человек",
+        
     ]
 };
 
-const adv = document.querySelectorAll(".promo__adv img");
-const advText = document.querySelector(".promo__adv-title");
-const poster = document.querySelector(".promo__bg");
-const genre = poster.querySelector(".promo__genre")
+const advImg = document.querySelectorAll(".promo__adv img")
+const advText = document.querySelector(".promo__adv-title")
+const genre = document.querySelector(".promo__genre")
+const bg = document.querySelector(".promo__bg")
 const list = document.querySelector(".promo__interactive-list")
+// 1
+function deleteAdv(adv) {
+    adv.forEach(item => {
+        item.remove();
+})
+}
 
+deleteAdv(advImg);
+advText.remove();
 
-// 1 
-adv.forEach(items => {
-    items.remove();
-});
+function changeGenreText(elem) {
+    elem.textContent = "драма"
+}
+changeGenreText(genre)
 
-advText.remove()
+function changeBackground(elem) {
+    elem.style.backgroundImage = "url('img/bg.jpg')"
+}
+changeBackground(bg)
 
-// 2
+function sort(arr) {
+    arr.sort();
+}
+sort(movieDB.movies)
 
-genre.textContent = "драма"
-
-// 3 
-
-poster.style.backgroundImage = "url('img/bg.jpg')"
-
-// 4,5
-movieDB.movies.sort();
-console.log(list.innerHTML)
-list.innerHTML = ""
-
-movieDB.movies.forEach((film, i) => {
-    list.innerHTML += `
-    <li class="promo__interactive-item">${i + 1}.${film}
-        <div class="delete"></div>
-    </li>
-    `
-});
+function createFilm (link) {
+    list.innerHTML = ""
+    link.forEach((item, i) => {
+        list.innerHTML += `
+        <li class="promo__interactive-item">${i+1}.${item}
+            <div class="delete"></div>
+        </li>
+        `
+    })
+}
+createFilm(movieDB.movies);
