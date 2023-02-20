@@ -36,6 +36,7 @@ const form = document.querySelector("form.add")
 const formButton = form.querySelector("button")
 const input = document.querySelector(".adding__input")
 
+
 // 1
 function deleteAdv(adv) {
     adv.forEach(item => {
@@ -68,8 +69,15 @@ function createFilm (link) {
         <li class="promo__interactive-item">${i+1}.${item}
             <div class="delete"></div>
         </li>
-        `
-    })
+        `;
+    });
+    // при удаление элементов которые созданы динамически, эти элементы нужно найти непосредственно через queryselectorall
+    document.querySelectorAll(".delete").forEach((btn, i) => {
+        btn.addEventListener("click", () => {
+            btn.parentElement.remove();
+            movieDB.movies.splice(i, 1);
+        });
+    });
 }
 createFilm(movieDB.movies);
 
@@ -90,3 +98,6 @@ const addFilms = (event) => {
 }
 
 form.addEventListener("submit", addFilms);
+
+
+
