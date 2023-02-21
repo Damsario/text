@@ -27,14 +27,15 @@ const movieDB = {
     ]
 };
 
-const advImg = document.querySelectorAll(".promo__adv img")
-const advText = document.querySelector(".promo__adv-title")
-const genre = document.querySelector(".promo__genre")
-const bg = document.querySelector(".promo__bg")
-const list = document.querySelector(".promo__interactive-list")
-const form = document.querySelector("form.add")
-const formButton = form.querySelector("button")
-const input = document.querySelector(".adding__input")
+const advImg = document.querySelectorAll(".promo__adv img");
+const advText = document.querySelector(".promo__adv-title");
+const genre = document.querySelector(".promo__genre");
+const bg = document.querySelector(".promo__bg");
+const list = document.querySelector(".promo__interactive-list");
+const form = document.querySelector("form.add");
+const formButton = form.querySelector("button");
+const input = document.querySelector(".adding__input");
+const checkbox = document.querySelector("[type='checkbox']");
 
 
 // 1
@@ -86,9 +87,13 @@ const addFilms = (event) => {
     event.preventDefault();
     
     let newFilm = input.value;
+    const favorite = checkbox.checked;
     if (newFilm) {
         if (newFilm.length > 21) {
             newFilm = newFilm.substring(0, 21).concat("...")
+        }
+        if (favorite) {
+            console.log("dfas")
         }
         movieDB.movies.push(newFilm);
         sort(movieDB.movies);
